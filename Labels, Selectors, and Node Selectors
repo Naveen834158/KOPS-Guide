@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-1
+  labels:
+    env: testing
+    department: DevOps
+spec:
+  containers:
+    - name: containers1
+      image: ubuntu
+      ports:
+        - containerPort: 80
+
+
+kubectl get pods -l depar﻿tment!=DevOps
+kubectl get pods -l env=testing
+kubectl get pods --show-labels
+kubectl label pods Pod_name Location=India
+kubectl get pods -l ‘env in (testing, development)’
+kubectl get pods -l ‘Location not in (India, US)’
+kubectl delete pod -l Location!=China
+
+
+
+
+
+=============Example of NodeSelector==================================================
+
+kubectl label node <node-name> node-id=node1
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels:
+    app: my-app
+spec:
+  containers:
+  - name: cont-1
+    image: shaikmustafa/dm
+    ports:
+    - containerPort: 80
+  nodeSelector:
+    node-id: node1
+
